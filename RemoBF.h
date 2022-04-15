@@ -171,7 +171,7 @@ int16_t RemoBF_catch(RemoBFStr_t* Str_p, uint8_t RegId);
  * -2:  VARI_BUFFER_NON_EXIST_ERROR
  * -8:  REMOBF_ILLEGAL_GET_ERROR (Buffer not FULL)
  */
-int16_t RemoBF_get(RemoBFStr_t* Str_p, uint8_t RegId, void* Data_p);
+int16_t RemoBF_get(RemoBFStr_t* Str_p, uint8_t RegId, uint8_t* Data_p);
 
 /**
  * @brief Clear the Remo Buffer contain by reset all the index to zero。
