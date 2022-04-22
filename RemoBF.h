@@ -63,17 +63,17 @@ typedef struct {
  * @ingroup remobf_struct
  */
 typedef struct {
-  uint8_t State;       // state of Whole Data Buffer Full:1 or Empty:0
-  uint8_t Dataindex;   // Data Temp array Index
-  uint8_t Variindex;   // Variable Index
-  uint8_t Byteindex;   // Byte Index of variable
-  uint8_t DataTotal;   // Total Bytes of Data
-  uint8_t VariTotal;   // Total Variable
-  uint8_t ByteMax;     // Maximum bytes of all the variables,
-  uint8_t DataDepth;   // length of the data buffer,
-  uint8_t VariDepth;   // length of the variable buffer,
-  RemoVari_t* VStr_p;  // Pointers of VariList
-  uint8_t* DList_p;    // Pointers of DataList
+  uint8_t State;        // state of Whole Data Buffer Full:1 or Empty:0
+  uint8_t DataIndex;    // Data Temp array Index
+  uint8_t VariIndex;    // Variable Index
+  uint8_t ByteIndex;    // Byte Index of variable
+  uint8_t DataTotal;    // Total Bytes of Data
+  uint8_t VariTotal;    // Total Variable
+  uint8_t ByteMax;      // Maximum bytes of all the variables,
+  uint8_t DataDepth;    // length of the data buffer,
+  uint8_t VariDepth;    // length of the variable buffer,
+  RemoVari_t* VList_p;  // Pointers of VariList
+  uint8_t* DList_p;     // Pointers of DataList
 } RemoBFStr_t;
 
 /**
@@ -86,16 +86,15 @@ typedef struct {
  * @param VariList_p address of the Remo Buffer variables list
  * @return N/A
  */
-void RemoBF_lay(RemoBFStr_t* Str_p, uint8_t* DataList_p,
-                RemoVari_t* VariList_p);
+void RemoBF_lay(RemoBFStr_t* Str_p, uint8_t* DataList_p,RemoVari_t* VariList_p);
 
 /**
- * @brief provide variable to books as a remo R/W register.
+ * @brief 
+ * 
  *
  * @ingroup remobf_func
  * @param Str_p : pointer to Remo R/W Buffer structure
- * @param Data_p : pointer address of the variable that booked as a remo R/W
- * Reg
+ * @param Data_p : pointer address of the variable that booked as a remo R/W Reg
  * @param Bytes : The size of the variable that booked as a remo R/W Reg
  * @return int16_t
  *  1~255:  RegId Register Id,
@@ -128,41 +127,39 @@ int16_t RemoBF_put(RemoBFStr_t* Str_p, uint8_t RegId, uint8_t Data);
  *
  * @ingroup remobf_func
  * @param Str_p :pointer to Remo R/W Buffer structure
- * @param RegId :RegId=1~255: the Register Id,  RegId=0:for all the
- * registed variables
+ * @param RegId :RegId=1~255: the Register Id,  RegId=0:for all the registed
+ * variables
  * @return int16_t
  * >=0 : Residual space in buffer for more recording
- * -1:  DATA_BUFFER_NON_EXIST_ERROR (Forget to call RemoBF_lay() before
- * call this function) -2:  VARI_BUFFER_NON_EXIST_ERROR (Forget to call
+ * -1:  DATA_BUFFER_NON_EXIST_ERROR (Forget to call RemoBF_lay() before call
+ * this function) -2:  VARI_BUFFER_NON_EXIST_ERROR (Forget to call
  * RemoBF_lay() before call this function) -6:  REMOBF_ILLEGAL_DIST_ERROR
  * (Buffer not FULL yet)
  */
 int16_t RemoBF_dist(RemoBFStr_t* Str_p, uint8_t RegId);
 
 /**
- * @brief Collect the whole contain in the variable with RegId or all the
- * * variables and store into Remo Buffer. .
+ * @brief Collect the whole contain in the variable with RegId or all the  *
+ * variables and store into Remo Buffer. .
  *
  * @ingroup remobf_func
  * @param Str_p :pointer to Remo R/W Buffer structure
- * @param RegId :RegId=1~255: the Register Id,  RegId=0:for all the
- * registed variables
+ * @param RegId :RegId=1~255: the Register Id,  RegId=0:for all the registed
+ * variables
  * @return int16_t
  * >=0 : Residual space in buffer for more recording
- * -1:  DATA_BUFFER_NON_EXIST_ERROR (Forget to call RemoBF_lay() before
- * call this function) -2:  VARI_BUFFER_NON_EXIST_ERROR (Forget to call
+ * -1:  DATA_BUFFER_NON_EXIST_ERROR (Forget to call RemoBF_lay() before call
+ * this function) -2:  VARI_BUFFER_NON_EXIST_ERROR (Forget to call
  * RemoBF_lay() before call this function) -7:  REMOBF_ILLEGAL_CATCH_ERROR
  * (Buffer not Empty)
  */
 int16_t RemoBF_catch(RemoBFStr_t* Str_p, uint8_t RegId);
-
 /**
  * @brief Get one byte data from the Remo Buffer.
  *
  * @ingroup remobf_func
  * @param Str_p: pointer to Remo R/W Buffer structure
- * @param RegId=1~255: Register Id,  RegId=0: for all the registed
- * variables
+ * @param RegId=1~255: Register Id,  RegId=0: for all the registed variables
  * @param Data_p  the address of destenation variable
  * @return int16_t，
  *  1~255:  RegId Register Id,
@@ -185,5 +182,6 @@ int16_t RemoBF_get(RemoBFStr_t* Str_p, uint8_t RegId, uint8_t* Data_p);
  */
 int16_t RemoBF_clr(RemoBFStr_t* Str_p);
 
-/* Public Section End */
 #endif
+
+/* Public Section End */

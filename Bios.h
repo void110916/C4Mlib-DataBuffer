@@ -6,8 +6,7 @@
  *
  */
 #include <stdint.h>
-
-#include "stdio.h"
+#include <stdio.h>
 #ifndef C4MLIB_MACRO_STD_DEF_H
 #define C4MLIB_MACRO_STD_DEF_H
 
@@ -182,10 +181,15 @@
 #define LOBYTE16(SOURCE) (SOURCE & 0xff)
 /* Public Section End */
 
+#endif  // C4MLIB_MACRO_BITS_OP_H
+
 /**
  * @def DELAY(tick)
  * @brief
  */
+
+#ifndef C4MLIB_HARDWARE_STD_DEF_H
+#define C4MLIB_HARDWARE_STD_DEF_H
 
 #define DELAY(tick)                \
   for (int i = 0; i < tick; i++) { \
@@ -234,7 +238,7 @@ typedef struct {
  * HWRegPara_t* HWRegPara_p：批次設定暫存器參數陣列指標。
  * uint8_t* DataList_p：批次設定值陣列指標。
  */
-int HardWareSet_lay(HWSetStr_t *HWSetStr_p, HWFlagPara_t *HWFlagPara_p,
+uint8_t HardWareSet_lay(HWSetStr_t *HWSetStr_p, HWFlagPara_t *HWFlagPara_p,
                     HWRegPara_t *HWRegPara_p, uint8_t *DataList_p);
 
 /**
@@ -250,6 +254,5 @@ uint8_t HardWareSet_step(void *void_p);
  * HWSetStr_t* Str_p
  */
 uint8_t HardWare_insp(HWSetStr_t *Str_p);
-void EEPROM_Mem_Read(uint16_t Addr, uint8_t Bytes, void *Data_p);
-void EEPROM_Mem_Write(uint16_t Addr, uint8_t Bytes, void *Data_p);
-#endif  // C4MLIB_MACRO_BITS_OP_H
+#endif
+
